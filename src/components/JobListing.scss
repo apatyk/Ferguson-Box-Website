@@ -1,0 +1,21 @@
+@import '../variables.scss';
+
+.job-listing {
+  border-top: 1px solid $light-gray;
+
+  h2 {
+    color: $fb-green;
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  &__subline {
+    color: $dark-gray;
+    font-size: 0.9em;
+    font-style: italic;
+  }
+}

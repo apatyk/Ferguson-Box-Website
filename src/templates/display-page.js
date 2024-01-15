@@ -6,23 +6,30 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import ScrollToTopButton from '../components/ScrollToTopButton'
+import JobListing from "../components/JobListing"
 
 import '../global.scss'
 import './display-page.scss'
 
-export const DisplayPageTemplate = ({ heading, html }) => (
+export const DisplayPageTemplate = ({ heading, jobListings, html }) => (
   <div className="display-page">
     <h1>{heading}</h1>
     <div
       className="display-page__content"
       dangerouslySetInnerHTML={{ __html: html }}
     ></div>
+    {jobListings && 
+      jobListings.map(({title, description, department, location}) => (
+        <JobListing title={title} description={description} department={department} location={location}/>
+      ))
+    }
     <ScrollToTopButton />
   </div>
 )
 
 DisplayPageTemplate.propTypes = {
   heading: PropTypes.string.isRequired,
+  jobListings: PropTypes.array,
 }
 
 const DisplayPage = ({ data }) => {
@@ -30,7 +37,7 @@ const DisplayPage = ({ data }) => {
 
   return (
     <Layout pageTitle={frontmatter.pageTitle} boxNav={frontmatter.boxNav}>
-      <DisplayPageTemplate html={html} heading={frontmatter.heading} />
+      <DisplayPageTemplate html={html} heading={frontmatter.heading} jobListings={frontmatter.jobListings}/>
     </Layout>
   )
 }
@@ -56,6 +63,12 @@ export const pageQuery = graphql`
         boxNav {
           title
           IDlink
+        }
+        jobListings {
+          title
+          description
+          department
+          location
         }
       }
     }

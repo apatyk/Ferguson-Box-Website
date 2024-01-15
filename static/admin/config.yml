@@ -76,6 +76,20 @@ collections:
           - {label: "Page Title", name: pageTitle, widget: hidden, default: "Products"}
           - {label: "Heading", name: "heading", widget: "string"}
           - {label: "Body", name: "body", widget: "markdown"}
+      - file: "src/pages/jobs/index.md"
+        label: "Jobs"
+        name: "jobs"
+        fields:
+          - {label: "Template Key", name: templateKey, widget: hidden, default: "display-page"}
+          - {label: "Page Title", name: pageTitle, widget: hidden, default: "Jobs"}
+          - {label: "Heading", name: "heading", widget: "string", default: "Jobs"}
+          - {label: "Body", name: "body", widget: "markdown"}
+          - {label: "Job Listings", name: jobListings, widget: list, fields: [
+              {label: Title, name: title, widget: string},
+              {label: Description, name: description, widget: string},
+              {label: Department, name: department, widget: string},
+              {label: Location, name: location, widget: string},
+            ]}
       - file: "src/pages/contact/index.md"
         label: "Contact Us"
         name: "contact"
